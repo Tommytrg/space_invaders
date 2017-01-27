@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+}
+
+body{
+  background-color: black;
+  color: white;
+
+   }
+
+h1{
+  color: white;
+  text-align: center;
+}
+
+.space{
+  border: 2px dotted rgb(132, 255, 82);
+  float: left;
+  height: 90vh;
+  padding: 30px;
+  position: relative;
+  /*width: 1000px;*/
+  width: 50vw;
+
+}
+
+.score{
+  border: 2px dotted rgb(132, 255,82);
+  border-right: 0px;
+  float: left;
+  height: 24vh;
+  position: relative;
+  text-align: center;
+  /*width: 300px;*/
+  width: 24vw;
+}
+
+.history{
+  border: 2px dotted rgb(132, 255,82);
+  border-left: 0px;
+  float: left;
+  height: 60vh;
+  position: relative;
+  text-align: center;
+  width: 24vw;
+}
+
+.alien{
+  background-image:url("../img/alien.jpg");
+  background-size: cover;
+  display: inline-block;
+  height: 50px;
+  margin:2px;
+  width: 50px;
+}
+
+.ship{
+  background-image:url("../img/ship.jpg");
+  background-size: cover;
+  bottom: 5vh;
+  height: 50px;
+  position: absolute;
+  margin: 1vh 1vw;
+  width: 50px;
+}
