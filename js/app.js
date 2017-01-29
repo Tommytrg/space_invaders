@@ -11,7 +11,7 @@
    //this.board = new Board(x,y);
    this.score = new Score();
  }
-
+ 
  //COMO DIBUJAR EL TABLERO
  //Problema que los  aliens no miden 1px y que la nave tampoco
 /*
