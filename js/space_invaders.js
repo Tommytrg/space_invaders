@@ -66,8 +66,6 @@ Alien.prototype.moveDown = function(){
 //JUNTAR LA FUNCION DE DISPARO DE ALIEN Y SHIP?
 //funcion de acierto de disparo alien
 //JUNTAR LA FUNCION DE IMPACTO PARA ALIEN Y SHIP?
-
-
 /*******************************************
 SHOOTING
 *******************************************/
@@ -85,7 +83,6 @@ function Shooting(positionX,positionY){
 //     this.goForward();
 //   }
 // };
-
 Shooting.prototype.goForward = function(){
   var head = this.position[0];
   this.position.unshift({
@@ -98,18 +95,15 @@ Shooting.prototype.goForward = function(){
 /********************************************
 ELEGIR UNA FUNCION DE LAS DOS?
 ******************************************/
-
 Shooting.prototype.alienImpacted = function(alien){
   return alien.position.row === this.position[0].row &&
    alien.position.column === this.position[0].column;
 };
 
-
 function alienIsImpacted(shoot, alien){
   return alien.position.row === shoot.position[0].row &&
    alien.position.column === shoot.position[0].column;
 }
-
 /*******************************************
 SCORE
 *******************************************/
