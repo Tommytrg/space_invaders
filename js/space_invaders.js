@@ -1,18 +1,11 @@
-/*******************************************
-SPACE INVADERS
-*******************************************/
-// function SpaceInvaders(){
-//   this.ship = new Ship(); //Construir Ship
-//   this.alien = new Alien();
-//   this.board = new Board(x,y);
-// }
+
 /*******************************************
 SHIP
 *******************************************/
 function Ship(){
   this.position = {
     row : 10,
-    column :5
+    column : 5
   };
 }
 
@@ -35,7 +28,9 @@ Ship.prototype.moveLeft = function(){
   this.position.row += 1;
 };
 
-Ship
+Ship.prototype.shoot = function(){
+  return new Shooting(this.position.row-1, this.position.column);
+};
 /*******************************************
 ALIEN
 *******************************************/
@@ -44,7 +39,7 @@ function Alien(points,life,positionX, positionY){
   this.points = points;
   this.position = {
     row : positionY,
-    column :positionX
+    column : positionX
   };
 }
 
@@ -84,7 +79,7 @@ function Shooting(positionX,positionY){
     {row: positionY, column: positionX + 1},
     {row: positionY, column: positionX}
 ];}
-//COMO HACER QUE DETECTE SI HA IMPACTADO CON UN ALIEN
+//COMO HACER QUE DETECTE SI HA IMPACTADO CON UN ALIEN?
 // Shooting.prototype.move = function(){
 //   while(!this.impacted(alienPosition) || this.isOutOfSpace()){
 //     this.goForward();
@@ -101,14 +96,27 @@ Shooting.prototype.goForward = function(){
 };
 //Funcion que comprueba si el disparo ha acertado a un alien.
 /********************************************
-ELEGIR UNA FUNCION DE LAS DOS
+ELEGIR UNA FUNCION DE LAS DOS?
 ******************************************/
+
+Shooting.prototype.alienImpacted = function(alien){
+  return alien.position.row === this.position[0].row &&
+   alien.position.column === this.position[0].column;
+};
+
+
 function alienIsImpacted(shoot, alien){
   return alien.position.row === shoot.position[0].row &&
    alien.position.column === shoot.position[0].column;
 }
 
-Shooting.prototype.alienImpacted = function(alien){
-  return alien.position.row === this.position[0].row &&
-   alien.position.column === this.position[0].column;
+/*******************************************
+SCORE
+*******************************************/
+function Score(){
+  this.score = 0;
+}
+
+Score.prototype.getPoints = function(points){
+  this.score += points;
 };
