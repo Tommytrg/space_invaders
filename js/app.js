@@ -1,8 +1,8 @@
 /*
- Objeto Game
+ Objeto SpaceInvaders
 
  /*******************************************
- SPACE INVADERS debe ir en app.js?
+ SPACE INVADERS
  *******************************************/
  function SpaceInvaders(){
    this.ship = new Ship();
@@ -11,12 +11,12 @@
    //this.board = new Board(x,y);
    this.score = new Score();
  }
- 
+
  //COMO DIBUJAR EL TABLERO
  //Problema que los  aliens no miden 1px y que la nave tampoco
 /*
 -Funciones de dibujar
--Dibujar disparo
+-Dibujar   disparo
 
 -Dibujar ship
 
@@ -38,7 +38,9 @@ SpaceInvaders.prototype.assignControlsToKeys = function(){
       }
   }.bind(this));
 };
-
-Game.prototype.removeAlien = function() {
+//ES CORRECTO QUITAR LA CLASE O DEBERIA ELIMINAR EL DIV ?
+SpaceInvaders.prototype.removeAlien = function() {
   $('.alien').removeClass('alien');
 };
+
+//COMO DIBUJAR EL DISPARO ?

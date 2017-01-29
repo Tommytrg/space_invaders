@@ -19,8 +19,8 @@ h1{
   height: 90vh;
   padding: 30px;
   position: relative;
-  /*width: 1000px;*/
-  width: 50vw;
+  width: 900px;
+  /*width: 50vw;*/
 
 }
 
@@ -31,8 +31,8 @@ h1{
   height: 24vh;
   position: relative;
   text-align: center;
-  /*width: 300px;*/
-  width: 24vw;
+  width: 400px;
+  /*width: 24vw;*/
 }
 
 .history{
@@ -45,6 +45,16 @@ h1{
   width: 24vw;
 }
 
+.ship{
+  background-image:url("../img/ship.jpg");
+  background-size: cover;
+  bottom: 5vh;
+  height: 50px;
+  position: absolute;
+  margin: 1vh 1vw;
+  width: 50px;
+}
+
 .alien{
   background-image:url("../img/alien.jpg");
   background-size: cover;
@@ -54,10 +64,11 @@ h1{
   width: 50px;
 }
 
+/*COLOCAR UN ALIEN AL LADO DE OTRO ON MARGIN ?*/
 #tipo1{
   background-image:url("../img/alien1.png");
-}
 
+}
 #tipo2{
   background-image:url("../img/alien2.png");
 }
@@ -79,15 +90,12 @@ h1{
 #tipo8{
   background-image:url("../img/alien8.png");
 }
-
 #tipo9{
   background-image:url("../img/alien9.png");
 }
-
 #tipo10{
   background-image:url("../img/alien10.png");
 }
-
 
 #tipo11{
   background-image:url("../img/alien.jpg");

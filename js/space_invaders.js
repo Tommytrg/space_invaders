@@ -1,35 +1,40 @@
-
+//JUNTAR FUNCIONES REMOVELIFE Y SHOOT EN ALIEN Y SHIP
 /*******************************************
 SHIP
 *******************************************/
-function Ship(){
+function Ship(life){
+  this.life=life;
   this.position = {
     row : 10,
     column : 5
   };
 }
 
-Ship.prototype.move = function(direction){
+Ship.prototype.shipMove = function(direction){
   switch (direction) {
     case "right":
-      this.moveRight();
+      this.moveRightShip();
       break;
     case "left":
-      this.moveLeft();
+      this.moveLeftShip();
       break;
   }
 };
 
-Ship.prototype.moveRight = function(){
+Ship.prototype.moveRightShip = function(){
   this.position.column += 1;
 };
 
-Ship.prototype.moveLeft = function(){
+Ship.prototype.moveLeftShip = function(){
   this.position.row += 1;
 };
 
-Ship.prototype.shoot = function(){
+Ship.prototype.shootToAlien = function(){
   return new Shooting(this.position.row-1, this.position.column);
+};
+
+Ship.prototype.removeLifeShip = function(){
+this.life -= 1;
 };
 /*******************************************
 ALIEN
@@ -44,23 +49,26 @@ function Alien(points,life,positionX, positionY){
 }
 
 //function que resta vida al alien
-Alien.prototype.removeLife = function(){
+Alien.prototype.removeLifeAlien = function(){
   this.life -= 1;
 };
 
 //funcion que mueve al alien derecha
-Alien.prototype.moveRight = function(){
+Alien.prototype.moveRightAlien = function(){
   this.position.row += 1;
 };
 //funcion mover alien izquierda
-Alien.prototype.moveLeft = function(){
+Alien.prototype.moveLeftAlien = function(){
   this.position.row -= 1;
 };
 //funcion mover alien hacia abajo
-Alien.prototype.moveDown = function(){
+Alien.prototype.moveDownAlien = function(){
   this.position.column += 1;
 };
 //funcion eliminar alien?
+Alien.prototype.shootToShip = function(){
+  return new Shooting(this.position.row-4,thi.position.column);
+};
 
 //funcion disparo alien
 //JUNTAR LA FUNCION DE DISPARO DE ALIEN Y SHIP?
@@ -83,13 +91,22 @@ function Shooting(positionX,positionY){
 //     this.goForward();
 //   }
 // };
-Shooting.prototype.goForward = function(){
+Shooting.prototype.goForwardShooting = function(){
   var head = this.position[0];
   this.position.unshift({
     row: head.row - 1,
     column: head.column
   });
-  this.body.pop();
+  this.position.pop();
+};
+
+Shooting.prototype.goBackwardShooting = function(){
+  var head = this.position[4];
+  this.position.push(this.position.shift({
+    row: head.row,
+    column: head.column
+  }));
+
 };
 //Funcion que comprueba si el disparo ha acertado a un alien.
 /********************************************
