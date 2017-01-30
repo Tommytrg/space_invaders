@@ -2,6 +2,7 @@
 /*******************************************
 SHIP
 *******************************************/
+//Constructor de ship
 function Ship(life){
   this.life=life;
   this.position = {
@@ -9,7 +10,7 @@ function Ship(life){
     column : 5
   };
 }
-
+//Funcion que mueve ship a la derecha o izquierda
 Ship.prototype.shipMove = function(direction){
   switch (direction) {
     case "right":
@@ -20,25 +21,26 @@ Ship.prototype.shipMove = function(direction){
       break;
   }
 };
-
+//Funcion que mueve ship a la derecha
 Ship.prototype.moveRightShip = function(){
   this.position.column += 1;
 };
-
+//Funcion que mueve ship a la izquierda
 Ship.prototype.moveLeftShip = function(){
   this.position.row += 1;
 };
-
+//Funcion que hace que ship dispare
 Ship.prototype.shootToAlien = function(){
   return new Shooting(this.position.row-1, this.position.column);
 };
-
+//Funcion que le resta 1 pto de vida a ship
 Ship.prototype.removeLifeShip = function(){
 this.life -= 1;
 };
 /*******************************************
 ALIEN
 *******************************************/
+//Constructor de alien
 function Alien(points,life,positionX, positionY){
   this.life = life;
   this.points = points;
@@ -48,16 +50,16 @@ function Alien(points,life,positionX, positionY){
   };
 }
 
-//function que resta vida al alien
+//Function que resta vida al alien
 Alien.prototype.removeLifeAlien = function(){
   this.life -= 1;
 };
 
-//funcion que mueve al alien derecha
+//Funcion que mueve al alien derecha
 Alien.prototype.moveRightAlien = function(){
   this.position.row += 1;
 };
-//funcion mover alien izquierda
+//Funcion mover alien izquierda
 Alien.prototype.moveLeftAlien = function(){
   this.position.row -= 1;
 };
@@ -70,13 +72,12 @@ Alien.prototype.shootToShip = function(){
   return new Shooting(this.position.row-4,thi.position.column);
 };
 
-//funcion disparo alien
 //JUNTAR LA FUNCION DE DISPARO DE ALIEN Y SHIP?
-//funcion de acierto de disparo alien
 //JUNTAR LA FUNCION DE IMPACTO PARA ALIEN Y SHIP?
 /*******************************************
 SHOOTING
 *******************************************/
+//Constructor de Shooting
 function Shooting(positionX,positionY){
   this.position = [
     {row: positionY, column: positionX + 4},
@@ -85,12 +86,12 @@ function Shooting(positionX,positionY){
     {row: positionY, column: positionX + 1},
     {row: positionY, column: positionX}
 ];}
-//COMO HACER QUE DETECTE SI HA IMPACTADO CON UN ALIEN?
 // Shooting.prototype.move = function(){
 //   while(!this.impacted(alienPosition) || this.isOutOfSpace()){
 //     this.goForward();
 //   }
 // };
+//Funcion que mueve shooting hacia la parte superior
 Shooting.prototype.goForwardShooting = function(){
   var head = this.position[0];
   this.position.unshift({
@@ -99,7 +100,7 @@ Shooting.prototype.goForwardShooting = function(){
   });
   this.position.pop();
 };
-
+//Funcion que mueve shooting a la parte inferior
 Shooting.prototype.goBackwardShooting = function(){
   var head = this.position[4];
   this.position.push(this.position.shift({
@@ -108,11 +109,10 @@ Shooting.prototype.goBackwardShooting = function(){
   }));
 };
 
-//Funcion que comprueba si el disparo ha acertado a un alien.
-//recorrer el array de aliens comrpobando si alguno ha sido impactado
 /********************************************
-ELEGIR UNA FUNCION DE LAS DOS?
+ELEGIR UNA FUNCION DE LAS DOS ?
 ******************************************/
+//Funcion que devuelve true si shooting impacta con un alien
 Shooting.prototype.isAlienImpacted = function(alien){
   return alien.position.row === this.position[0].row &&
    alien.position.column === this.position[0].column;
@@ -127,9 +127,11 @@ Shooting.prototype.isAlienImpacted = function(alien){
 /*******************************************
 SCORE
 *******************************************/
+//Constructor de Score
 function Score(){
   this.score = 0;
 }
+//Funcion que añade puntos a score
 Score.prototype.getPoints = function(points){
   this.score += points;
 };
