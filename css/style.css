@@ -21,6 +21,7 @@ h1{
   padding: 30px;
   position: relative;
   width: 900px;
+  /*width: 50%;*/
   /*width: 50vw;*/
 }
 
@@ -47,12 +48,12 @@ h1{
 }
 
 .ship{
-  background-image:url("/img/halconmilenario.png");
+  background-image:url("../img/halconmilenario.png");
   background-size: cover;
-  bottom: 5vh;
+  bottom: 20px;
   height: 50px;
   position: absolute;
-  margin: 1vh 1vw;
+  margin: 10px;
   width: 50px;
 }
 
@@ -68,7 +69,6 @@ h1{
 /*COLOCAR UN ALIEN AL LADO DE OTRO ON MARGIN ?*/
 #tipo1{
   background-image:url("../img/alien1.png");
-
 }
 #tipo2{
   background-image:url("../img/alien2.png");
@@ -101,20 +101,16 @@ h1{
 #tipo11{
   background-image:url("../img/alien.jpg");
 }
-.ship{
-  background-image:url("../img/ship.jpg");
-  background-size: cover;
-  bottom: 5vh;
-  height: 50px;
-  position: absolute;
-  margin: 1vh 1vw;
-  width: 50px;
-}
 
-.cuadrant {
-  width: 15px;
-  height: 15px;
+#shooting{}
+
+.shooting{
   background-color: red;
-  display: inline-block;
-  margin: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px  rgb(120, 251, 49);
+  height: 15px;
+  width: 4px;
+  position: absolute;
+  left: 65px;
+  bottom: 150px;
 }
