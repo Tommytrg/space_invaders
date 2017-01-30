@@ -106,28 +106,30 @@ Shooting.prototype.goBackwardShooting = function(){
     row: head.row,
     column: head.column
   }));
-
 };
+
 //Funcion que comprueba si el disparo ha acertado a un alien.
+//recorrer el array de aliens comrpobando si alguno ha sido impactado
 /********************************************
 ELEGIR UNA FUNCION DE LAS DOS?
 ******************************************/
-Shooting.prototype.alienImpacted = function(alien){
+Shooting.prototype.isAlienImpacted = function(alien){
   return alien.position.row === this.position[0].row &&
    alien.position.column === this.position[0].column;
 };
 
-function alienIsImpacted(shoot, alien){
-  return alien.position.row === shoot.position[0].row &&
-   alien.position.column === shoot.position[0].column;
-}
+// function alienIsImpacted(shoot, alien){
+//   return alien.position.row === shoot.position[0].row &&
+//    alien.position.column === shoot.position[0].column;
+// }
+
+
 /*******************************************
 SCORE
 *******************************************/
 function Score(){
   this.score = 0;
 }
-
 Score.prototype.getPoints = function(points){
   this.score += points;
 };
