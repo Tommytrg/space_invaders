@@ -63,7 +63,7 @@ Alien.prototype.moveRightAlien = function(){
 Alien.prototype.moveLeftAlien = function(){
   this.position.row -= 1;
 };
-//funcion mover alien hacia abajo
+//uncion mover alien hacia abajo
 Alien.prototype.moveDownAlien = function(){
   this.position.column += 1;
 };

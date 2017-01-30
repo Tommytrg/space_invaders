@@ -16,19 +16,20 @@ h1{
 .space{
   border: 2px dotted rgb(132, 255, 82);
   float: left;
-  height: 90vh;
+  height:800px;
+  /*height: 90vh;*/
   padding: 30px;
   position: relative;
   width: 900px;
   /*width: 50vw;*/
-
 }
 
 .score{
   border: 2px dotted rgb(132, 255,82);
   border-right: 0px;
   float: left;
-  height: 24vh;
+  height: 200px;
+  /*height: 24vh;*/
   position: relative;
   text-align: center;
   width: 400px;
@@ -46,7 +47,7 @@ h1{
 }
 
 .ship{
-  background-image:url("../img/ship.jpg");
+  background-image:url("/img/halconmilenario.png");
   background-size: cover;
   bottom: 5vh;
   height: 50px;
@@ -108,4 +109,12 @@ h1{
   position: absolute;
   margin: 1vh 1vw;
   width: 50px;
+}
+
+.cuadrant {
+  width: 15px;
+  height: 15px;
+  background-color: red;
+  display: inline-block;
+  margin: 5px;
 }
