@@ -1,15 +1,10 @@
 
-// ({
-//   rows:80,
-//   columns:90
-// });
  /*******************************************
  SPACE INVADERS
  *******************************************/
 //Constructor de spaceinvaders
  function SpaceInvaders(){
    this.ship = new Ship();
-   this.alien = new Alien(100,1,0,0);
    this.shipShoots = [];
    this.alienShoots = [];
    this.aliensArmy = [];
@@ -19,6 +14,31 @@
    this.start();
  }
 
+// SpaceInvaders.prototype.fillArmy = function(){
+//   this.aliensArmy=this.generateAlienArmy([]);
+// };
+//
+// SpaceInvaders.prototype.generateAlienArmy =function(army){
+//   for(var b = 0; b < 4 ; b++){
+//     army.push([]);
+//     for(c = 0; c < 10; c++){
+//       army[b].push(new Alien(1,100,0,0));
+//     }
+//   }
+//   //Se da clase de columna
+//   for(var d = 0; d < 4; d++){
+//     for(var e = 0; e<10; e++){
+//       army[d][e].addClass("col"+e);
+//     }
+//   }
+//   //Se da la clase fila
+//   for(var f = 0; f < 10; f++){
+//     for(var g = 0; g<4; g++){
+//       army[f][g].addClass("row"+g);
+//     }
+//   }
+//   return army;
+// };
    /*for (var rowIndex = 0; rowIndex < options.rows; rowIndex++){
      for (var columnIndex = 0; columnIndex < options.columns; columnIndex++){
       grid.push('<div class="cuadrant" data-row="'+rowIndex+'" data-col="'+columnIndex+'" />');
@@ -37,7 +57,6 @@ SpaceInvaders.prototype.assignControlsToKeys = function(){
     var ship = $(".ship");
     var left = parseInt(ship.css("left"));
     var spaceWidth = parseInt(space.css("width")) - parseInt(ship.css("width"));
-    // shipSize=partse
     var mov = 20;
      switch(e.keyCode){
        case 37:
@@ -46,7 +65,6 @@ SpaceInvaders.prototype.assignControlsToKeys = function(){
          $(".ship").css("left","-="+mov+"");
          //$(".ship").stop().animate({left: '-=60'});
        }
-
          break;
       case 39:
         this.ship.shipMove("right");
@@ -55,7 +73,6 @@ SpaceInvaders.prototype.assignControlsToKeys = function(){
             //$(".ship").stop().animate({left: '+=60'});
             console.log(mov);
           }
-
         break;
       case 32:
         this.shipShoots.push(this.ship.shootToAlien());
@@ -67,15 +84,21 @@ SpaceInvaders.prototype.assignControlsToKeys = function(){
 
 //Funcion que actualiza el (turno del) juego
  SpaceInvaders.prototype.update = function(){
-   console.log("Hola");
+
   this.moveShoots();
   this.checkShoots();
   this.drawShip();
   this.cleanShip();
+  this.cleanShooting();
   this.drawShooting();
   this.drawShip();
-
- };
+};
+//
+// if(this.shipShoots.length!==0){
+//   var shoots = document.getElementsByClassName("shooting")[0];
+//   console.log(shoots);
+//   console.log(parseInt(shoots.));}
+//  };
 /*
   $('poistion').on('keydown', function(e) {
     switch (e.keyCode) {
@@ -176,9 +199,7 @@ SpaceInvaders.prototype.cleanAlien = function() {
   $('#alien').removeClass('alien');
 };
 //Funcion que borra un shooting
-SpaceInvaders.prototype.cleanShooting = function(){
-    $('#shooting').removeClass('shooting');
-};
+
 //Funcion que comienza el juego
 // SpaceInvaders.prototype.start = function(){
 //   if (!this.intervalId){
@@ -204,7 +225,13 @@ SpaceInvaders.prototype.drawShooting = function(){
   $('#shooting').addClass('shooting');
 };
 SpaceInvaders.prototype.cleanShooting = function(){
-  $('#shooting').remove('shooting');
+  var shoots = document.getElementsByClassName("shooting");
+   for(var r = 0; r < shoots.length; r++){
+     if(parseInt(shoots[r].style.bottom) > 1000){
+       console.log("CACHIBACHE");
+       document.getElementsByClassName("shooting")[r].remove();
+     }
+   }
 };
 
 
@@ -241,8 +268,12 @@ SpaceInvaders.prototype.stop = function(){
 
 SpaceInvaders.prototype.start = function(){
   console.log("calling start");
+  // if(this.aliensArmy.length ===0){
+  //   this.fillArmy();
+  // }
   this.assignControlsToKeys();
-  setInterval(this.update.bind(this), 100);
+
+    setInterval(this.update.bind(this), 100);
 };
 
 var game = new SpaceInvaders();
