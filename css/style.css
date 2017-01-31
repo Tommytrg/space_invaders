@@ -13,6 +13,7 @@ h1{
   text-align: center;
 }
 
+p{text-align: }
 .space{
   border: 2px dotted rgb(132, 255, 82);
   float: left;
@@ -60,13 +61,36 @@ h1{
 .alien{
   background-image:url("../img/alien.jpg");
   background-size: cover;
-  display: inline-block;
+  position: absolute;
   height: 50px;
   margin:2px;
   width: 50px;
 }
 
-/*COLOCAR UN ALIEN AL LADO DE OTRO ON MARGIN ?*/
+.col1{left:80px;}
+.col2{left: 160px;}
+.col3{left: 240px;}
+.col4{left: 320px;}
+.col5{left: 400px;}
+.col6{left: 480px;}
+.col7{left: 560px;}
+.col8{left: 640px;}
+.col9{left: 720px;}
+.col10{left: 800px;}
+
+
+.row1{top:100px;}
+.row2{top: 180px;}
+.row3{top: 260px;}
+.row4{top: 340px;}
+.row5{top: 420px;}
+.row6{top: 500px;}
+.row7{top: 580px;}
+.row8{top: 660px;}
+.row9{top: 740px;}
+.row10{top: 820px;}
+
+
 #tipo1{
   background-image:url("../img/alien1.png");
 }

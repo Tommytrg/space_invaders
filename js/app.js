@@ -107,11 +107,11 @@ SpaceInvaders.prototype.moveAlienShoots = function(){
 };
 //Funcion que mueve los disparos de ship
 SpaceInvaders.prototype.moveShipShoots = function(){
-    // var mov = 100;
+     var mov = 100;
     // console.log(mov);
-    //$(".shooting").css("bottom","+="+mov+"");
-    
-    $(".shooting").stop().animate({bottom: '+=700'});
+    $(".shooting").css("bottom","+="+mov+"");
+
+    //$(".shooting").stop().animate({bottom: '+=700'});
 
     for(var m = 0; m< this.shipShoots.length; m++){
       this.shipShoots[m].goForwardShooting();
@@ -196,9 +196,7 @@ SpaceInvaders.prototype.cleanShip = function() {
 };
 SpaceInvaders.prototype.createShooting = function(){
       this.shipShoots.push(new Shooting());
-  // $(".space").prepend($("<div></div>").addClass('.shooting').attr('id','shooting'));
   $(".space").prepend(($("<div></div>").addClass('shooting').attr('id','shooting')).css("left",34+parseInt(($(".ship").css("left")))));
-  // $(".space").prepend(($("<div></div>").addClass('shooting').));
   // console.log("Creando disparo");
 };
 
