@@ -30,7 +30,7 @@ Ship.prototype.moveLeftShip = function(){
   this.position.row += 1;
 };
 //Funcion que hace que ship dispare
-Ship.prototype.shootToAlien = function(){
+Ship.prototype.shootToAlien = function( ){
   return new Shooting(this.position.row-1, this.position.column);
 };
 //Funcion que le resta 1 pto de vida a ship

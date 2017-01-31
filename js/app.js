@@ -16,10 +16,6 @@
    //this.board = new Board(x,y);
    this.score = new Score();
    console.log("Hola");
-   this.drawShip();
-   this.cleanShip();
-   this.assignControlsToKeys();
-   this.drawShip();
    this.start();
  }
 
@@ -36,6 +32,7 @@
 //Funcion que asigna las teclas izq y dcha para el movimiento de la nave
 SpaceInvaders.prototype.assignControlsToKeys = function(){
   window.addEventListener('keydown',function(e){
+
     var space = $(".space");
     var ship = $(".ship");
     var left = parseInt(ship.css("left"));
@@ -44,26 +41,28 @@ SpaceInvaders.prototype.assignControlsToKeys = function(){
     var mov = 5;
      switch(e.keyCode){
        case 37:
-       console.log(this.ship);
        this.ship.shipMove("left");
        if (left - mov > 0){
          $(".ship").css("left","-="+mov+"");
-       }
          //$(".ship").stop().animate({left: '-=60'});
+       }
+
          break;
       case 39:
         this.ship.shipMove("right");
           if (left + mov + parseInt(ship.css("width")) < spaceWidth){
             $(".ship").css("left","+="+mov+"");
+            //$(".ship").stop().animate({left: '+=60'});
+            console.log(mov);
           }
-        // $(".ship").stop().animate({left: '+=60'});
+
         break;
       case 32:
         this.shipShoots.push(this.ship.shootToAlien());
         this.createShooting();
         break;
-   }
- }.bind(this));
+    }
+  }.bind(this));
 };
 
 //Funcion que actualiza el (turno del) juego
@@ -98,31 +97,38 @@ FUNCIONES DE DISPARO
 //Funcion que mueve los disparos de los alien
 SpaceInvaders.prototype.moveAlienShoots = function(){
   window.addEventListener('keydown',function(e){
-    var mov = 5;
+
+    // $(".shooting").css("bottom","-="+mov+"");
+    // $(".shooting").stop().animate({bottom: '+=60'});
+
     this.alienShoots.map(function (item){
-      $(".shooting").css("bottom","-="+mov+"");
-      return item.moveBackWard();
+        item.moveBackWard();
     });
   }.bind(this));
 };
 //Funcion que mueve los disparos de ship
 SpaceInvaders.prototype.moveShipShoots = function(){
-  window.addEventListener('keydown',function(e){
-    var mov = 5;
-    this.shipShoots.map(function (item){
-      $(".shooting").css("bottom","+="+mov+"");
-      return this.item.moveForward();
-    });
-  }.bind(this));
+    // var mov = 100;
+    // console.log(mov);
+    // $(".shooting").css("bottom","+="+mov+"");
+    $(".shooting").stop().animate({bottom: '+=700'});
+
+    for(var m = 0; m< this.shipShoots.length; m++){
+      this.shipShoots[m].goForwardShooting();
+    }
+    console.log("disparo en movimiento");
 };
+
 
 
 //Funcion que mueve los disparos
 SpaceInvaders.prototype.moveShoots = function(){
   if(this.alienShoots.length !== 0){
     this.moveAlienShoots();
+
   }
   if(this.shipShoots.length !== 0){
+    console.log("dentro");
     this.moveShipShoots();
   }
 };
@@ -195,8 +201,10 @@ SpaceInvaders.prototype.cleanShip = function() {
   $('#ship').removeClass('.ship');
 };
 SpaceInvaders.prototype.createShooting = function(){
-  $("#ship").append("<div></div>").addClass('.shooting').attr('id','shooting');
-  console.log("DOS");
+  this.shipShoots.push(new Shooting());
+  debugger
+  $(".ship").append("<div></div>").addClass('.shooting').attr('id','shooting');
+  console.log("Creando disparo");
 };
 
 SpaceInvaders.prototype.drawShooting = function(){
@@ -236,7 +244,7 @@ SpaceInvaders.prototype.stop = function(){
 };
 
 SpaceInvaders.prototype.start = function(){
-  setInterval(this.update.bind(this), 100);
+  setInterval(this.update.bind(this), 1000);
 };
 
 var game = new SpaceInvaders();
