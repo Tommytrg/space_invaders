@@ -18,7 +18,14 @@ h2{
   font-size: 25px;
 }
 
+.limit{
+  position: absolute;
+  border-color:rgb(103, 255, 84);
+  bottom: 80px;
+  width: 830px;
 
+
+}
 
 .space{
   border: 2px dotted rgb(132, 255, 82);
@@ -27,7 +34,7 @@ h2{
   /*height: 90vh;*/
   padding: 30px;
   position: relative;
-  width: 900px;
+  width: 910px;
   /*width: 50%;*/
   /*width: 50vw;*/
 }
@@ -81,6 +88,7 @@ h2{
   margin:2px;
   width: 50px;
 }
+.ali{}
 
 .col1{left:80px;}
 .col2{left: 160px;}

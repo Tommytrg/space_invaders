@@ -62,7 +62,6 @@ SpaceInvaders.prototype.assignControlsToKeys = function(){
   this.clearAliens();
   this.moveAliens();
   this.drawAliens();
-
 };
 
 SpaceInvaders.prototype.clearAliens = function(){
@@ -77,10 +76,12 @@ SpaceInvaders.prototype.drawAliens =function(){
 SpaceInvaders.prototype.moveAliens = function(){
   var mov =1;
   this.aliensArmy = $(".alien");
-  if(parseInt($(".alien").css("bottom")) > 200){
-      $(".alien").css("bottom","-="+mov+"");
+  // if(parseInt($(".alien").css("bottom")) > 350){
+  if(parseInt(this.aliensArmy[this.aliensArmy.length-1].style.bottom) === 86){
+    // this.explosion(); implementar
+    this.looseGame();
   }else{
-      this.looseGame();
+    $(".alien").css("bottom","-="+mov+"");
   }
 };
 /*******************************************
@@ -89,10 +90,8 @@ FUNCIONES DE DISPARO
 //Funcion que mueve los disparos de los alien
 SpaceInvaders.prototype.moveAlienShoots = function(){
   window.addEventListener('keydown',function(e){
-
     // $(".shooting").css("bottom","-="+mov+"");
     // $(".shooting").stop().animate({bottom: '+=60'});
-
     this.alienShoots.map(function (item){
         item.moveBackWard();
     });
@@ -135,7 +134,6 @@ SpaceInvaders.prototype.checkShipShoots = function(){
           this.returnPoints(this.aliensArmy[l]);
           this.removeAlien(this.aliensArmy[l]);
           this.shipShoots[k].remove();
-
           break;
         }
       }
@@ -163,30 +161,6 @@ SpaceInvaders.prototype.colision = function(shoot, alien){
 
 SpaceInvaders.prototype.returnPoints = function(alien){
   this.score.points += 100;
-  // switch (alien.attr("class")) {
-  //   case ".tipo1":
-  //     // this.score.points = 500;
-  //     $(".score").empty().append("500px");
-  //     break;
-  //   case ".tipo2" :
-  //     // this.score.points = 400;
-  //     $(".score").empty().append("500px");
-  //
-  //     break;
-  //   case ".tipo3" :
-  //     // this.score.points = 300;
-  //     $(".score").empty().append("500px");
-  //
-  //     break;
-  //   case ".tipo4" :
-  //     this.score.points = 200;
-  //     break;
-  //   case ".tipo5" :
-  //     this.score.points = 100;
-  //     break;
-  //   default: value = 100;
-
-  // }
 };
 
 SpaceInvaders.prototype.checkAlienShoots = function(){
@@ -248,8 +222,9 @@ ESTADO DEL JUEGO
 *********************************************************************/
 //Funcion que para el juego indicando que se ha perdido
 SpaceInvaders.prototype.looseGame = function(){
-  alert("GAME OVER");
   this.stop();
+  // alert("GAME OVER");
+
 };
 
 SpaceInvaders.prototype.stop = function(){
@@ -260,13 +235,8 @@ SpaceInvaders.prototype.stop = function(){
 };
 
 SpaceInvaders.prototype.start = function(){
-  console.log("calling start");
-  // if(this.aliensArmy.length ===0){
-  //   this.fillArmy();
-  // }
   this.assignControlsToKeys();
-
-    setInterval(this.update.bind(this), 50);
+  setInterval(this.update.bind(this), 50);
 };
 
 var game = new SpaceInvaders();
@@ -280,7 +250,7 @@ var game = new SpaceInvaders();
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 //implementar vidas con class
-
+//
 
 //Funcion que borra un shooting
 
