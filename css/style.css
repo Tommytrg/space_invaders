@@ -13,7 +13,7 @@ h1{
   text-align: center;
 }
 
-p{text-align: }
+
 .space{
   border: 2px dotted rgb(132, 255, 82);
   float: left;
@@ -26,10 +26,11 @@ p{text-align: }
   /*width: 50vw;*/
 }
 
-.score{
+.scoreBoard{
   border: 2px dotted rgb(132, 255,82);
   border-right: 0px;
   float: left;
+  font-size: 30px;
   height: 200px;
   /*height: 24vh;*/
   position: relative;
@@ -37,7 +38,15 @@ p{text-align: }
   width: 400px;
   /*width: 24vw;*/
 }
+.score{
+  display: inline;
+  font-size: 36px;
+  font-weight: bold;
+}
 
+.px{
+  display: inline;
+}
 .history{
   border: 2px dotted rgb(132, 255,82);
   border-left: 0px;

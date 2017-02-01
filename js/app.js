@@ -9,7 +9,6 @@
    this.alienShoots = [];
    this.aliensArmy = [];
    this.score = new Score();
-   console.log("Hola");
    this.start();
  }
 
@@ -19,7 +18,7 @@
 //Funcion que asigna las teclas izq y dcha para el movimiento de la nave
 SpaceInvaders.prototype.assignControlsToKeys = function(){
     // console.log("adding event listener");
-  window.addEventListener('keydown',function(e){
+  window.addEventListener('keyup',function(e){
     var space = $(".space");
     var ship = $(".ship");
     var left = parseInt(ship.css("left"));
@@ -53,6 +52,7 @@ SpaceInvaders.prototype.assignControlsToKeys = function(){
  SpaceInvaders.prototype.update = function(){
   this.moveShoots();
   this.checkShoots();
+  this.drawPoints();
   this.drawShip();
   this.clearShip();
   this.clearShootingIfIsOut();
@@ -113,10 +113,10 @@ SpaceInvaders.prototype.checkShipShoots = function(){
     for(var k = 0; k < this.shipShoots.length; k++ ){
       for(var l = 0; l<this.aliensArmy.length;l++){
         if( this.colision(this.shipShoots[k],this.aliensArmy[l])){
-          console.log(this.shipShoots[k]);
+          this.returnPoints(this.aliensArmy[l]);
           this.clearAlien(this.aliensArmy[l]);
-          console.log(this.shipShoots[k]);
           this.shipShoots[k].remove();
+
           break;
         }
       }
@@ -143,30 +143,31 @@ SpaceInvaders.prototype.colision = function(shoot, alien){
 };
 
 SpaceInvaders.prototype.returnPoints = function(alien){
-  switch (alien.attr("class")) {
-    case ".tipo1":
-      // this.score.points = 500;
-      $(".score").empty().append("500px");
-      break;
-    case ".tipo2" :
-      // this.score.points = 400;
-      $(".score").empty().append("500px");
+  this.score.points += 100;
+  // switch (alien.attr("class")) {
+  //   case ".tipo1":
+  //     // this.score.points = 500;
+  //     $(".score").empty().append("500px");
+  //     break;
+  //   case ".tipo2" :
+  //     // this.score.points = 400;
+  //     $(".score").empty().append("500px");
+  //
+  //     break;
+  //   case ".tipo3" :
+  //     // this.score.points = 300;
+  //     $(".score").empty().append("500px");
+  //
+  //     break;
+  //   case ".tipo4" :
+  //     this.score.points = 200;
+  //     break;
+  //   case ".tipo5" :
+  //     this.score.points = 100;
+  //     break;
+  //   default: value = 100;
 
-      break;
-    case ".tipo3" :
-      // this.score.points = 300;
-      $(".score").empty().append("500px");
-
-      break;
-    case ".tipo4" :
-      this.score.points = 200;
-      break;
-    case ".tipo5" :
-      this.score.points = 100;
-      break;
-    default: value = 100;
-
-  }
+  // }
 };
 
 SpaceInvaders.prototype.checkAlienShoots = function(){
@@ -213,6 +214,10 @@ SpaceInvaders.prototype.clearShootingIfIsOut = function(){
        document.getElementsByClassName("shooting")[r].remove();
      }
    }
+};
+
+SpaceInvaders.prototype.drawPoints = function(){
+  $(".score").empty().append(this.score.points );
 };
 
 SpaceInvaders.prototype.clearShooting = function(shoot){
