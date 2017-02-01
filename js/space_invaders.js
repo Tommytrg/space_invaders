@@ -129,7 +129,7 @@ SCORE
 *******************************************/
 //Constructor de Score
 function Score(){
-  this.score = 0;
+  this.points = 0;
 }
 //Funcion que añade puntos a score
 Score.prototype.getPoints = function(points){
