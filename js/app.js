@@ -10,6 +10,7 @@
    this.aliensArmy = [];
    this.score = new Score();
    this.start();
+   this.times = 0;
  }
 
 /*******************************************
@@ -58,13 +59,33 @@ SpaceInvaders.prototype.assignControlsToKeys = function(){
   this.clearShootingIfIsOut();
   this.drawShooting();
   this.drawShip();
+  this.clearAliens();
+  this.moveAliens();
+  this.drawAliens();
 
 };
 
+SpaceInvaders.prototype.clearAliens = function(){
+  this.aliensArmy = $(".alien");
+    this.aliensArmy.removeClass("ali");
+};
+
+SpaceInvaders.prototype.drawAliens =function(){
+  this.aliensArmy.addClass("ali");
+};
+
+SpaceInvaders.prototype.moveAliens = function(){
+  var mov =1;
+  this.aliensArmy = $(".alien");
+  if(parseInt($(".alien").css("bottom")) > 200){
+      $(".alien").css("bottom","-="+mov+"");
+  }else{
+      this.looseGame();
+  }
+};
 /*******************************************
 FUNCIONES DE DISPARO
 *******************************************/
-
 //Funcion que mueve los disparos de los alien
 SpaceInvaders.prototype.moveAlienShoots = function(){
   window.addEventListener('keydown',function(e){
@@ -80,9 +101,7 @@ SpaceInvaders.prototype.moveAlienShoots = function(){
 //Funcion que mueve los disparos de ship
 SpaceInvaders.prototype.moveShipShoots = function(){
      var mov = 60;
-    // console.log(mov);
-    $(".shooting").css("bottom","+="+mov+"");
-
+    $(".shipShooting").css("bottom","+="+mov+"");
     //$(".shooting").stop().animate({bottom: '+=700'});
     // console.log("disparo en movimiento");
 };
@@ -107,14 +126,14 @@ SpaceInvaders.prototype.checkShoots = function(){
 
 SpaceInvaders.prototype.checkShipShoots = function(){
   // this.shipShoots = document.getElementsByClassName("shooting");
-  this.shipShoots = $(".shooting");
+  this.shipShoots = $(".shipShooting");
   this.aliensArmy = $(".alien");
   if(this.shipShoots.length !== 0 && this.aliensArmy.length !==0){
     for(var k = 0; k < this.shipShoots.length; k++ ){
       for(var l = 0; l<this.aliensArmy.length;l++){
         if( this.colision(this.shipShoots[k],this.aliensArmy[l])){
           this.returnPoints(this.aliensArmy[l]);
-          this.clearAlien(this.aliensArmy[l]);
+          this.removeAlien(this.aliensArmy[l]);
           this.shipShoots[k].remove();
 
           break;
@@ -185,7 +204,7 @@ SpaceInvaders.prototype.checkAlienShoots = function(){
 INTERACCION CON HTML
 *********************************************************************/
 //Funcion que borra un alien
-SpaceInvaders.prototype.clearAlien = function(alien) {
+SpaceInvaders.prototype.removeAlien = function(alien) {
   $(alien).remove();
 };
 /**********************
@@ -198,20 +217,20 @@ SpaceInvaders.prototype.clearShip = function() {
   $('#ship').removeClass('.ship');
 };
 SpaceInvaders.prototype.createShooting = function(){
-  this.shipShoots = document.getElementsByClassName("shooting");
-  $(".space").prepend(($("<div></div>").addClass('shooting').attr('id','shooting')).css("left",34+parseInt(($(".ship").css("left")))));
+  this.shipShoots = document.getElementsByClassName("shipShooting");
+  $(".space").prepend(($("<div></div>").addClass('shipShooting')).css("left",34+parseInt(($(".ship").css("left")))));
   // console.log("Creando disparo");
 };
 
 SpaceInvaders.prototype.drawShooting = function(){
-  $('#shooting').addClass('shooting');
+  $('#shipShooting').addClass('shipShooting');
 };
 SpaceInvaders.prototype.clearShootingIfIsOut = function(){
-  var shoots = document.getElementsByClassName("shooting");
+  var shoots = document.getElementsByClassName("shipShooting");
    for(var r = 0; r < shoots.length; r++){
      if(parseInt(shoots[r].style.bottom) > 1000){
        console.log("CACHIBACHE");
-       document.getElementsByClassName("shooting")[r].remove();
+       document.getElementsByClassName("shipShooting")[r].remove();
      }
    }
 };
