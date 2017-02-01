@@ -54,8 +54,8 @@ SpaceInvaders.prototype.assignControlsToKeys = function(){
   this.moveShoots();
   this.checkShoots();
   this.drawShip();
-  this.cleanShip();
-  this.cleanShooting();
+  this.clearShip();
+  this.clearShootingIfIsOut();
   this.drawShooting();
   this.drawShip();
 
@@ -108,49 +108,63 @@ SpaceInvaders.prototype.checkShoots = function(){
 SpaceInvaders.prototype.checkShipShoots = function(){
 
   this.shipShoots = document.getElementsByClassName("shooting");
-  this.aliensArmy = document.getElementsByClassName("alien");
+  this.aliensArmy = $(".alien");
   if(this.shipShoots.length !== 0 && this.aliensArmy.length !==0){
     for(var k = 0; k < this.shipShoots.length; k++ ){
       for(var l = 0; l<this.aliensArmy.length;l++){
           if( this.colision(this.shipShoots[k],this.aliensArmy[l])){
+            console.log(this.shipShoots[k]);
             this.clearAlien(this.aliensArmy[l]);
+            console.log(this.shipShoots[k]);
 
+            this.shipShoots[k].remove();
             }
           }
       }
     }
-
 };
 
 // $(".alien").css("top")
 
 SpaceInvaders.prototype.colision = function(shoot, alien){
-  var alienBottom = parseInt(alien.style.bottom);
-  var alienLeft = parseInt(alien.style.left);
+  // debugger;
+  var alienBottom = parseInt(window.getComputedStyle(alien).bottom);
+  var alienLeft = parseInt(window.getComputedStyle(alien).left);
   var alienHeight = 50; //parseInt(alien.style.height) ahorro de accesos al DOM
   var alienWidth = 50; //parseInt(alien.style.width) ahorro de accesos al DOM
   var shootBottom = parseInt(shoot.style.bottom);
   var shootLeft = parseInt(shoot.style.left);
   var shootHeight = 15; //parseInt(alien.style.height) ahorro de accesos al DOM
   var shootWidth = 4; //parseInt(alien.style.width) ahorro de accesos al DOM
-  console.log(alien.style.getPropertyValue("bottom"));
-  console.log("alienBottom " +alienBottom);
-  console.log("alienLeft " +alienLeft);
-  console.log("shootBottom " +shootBottom);
-  console.log("shootLeft " +shootLeft);
-  console.log(!(
-    ((alienBottom + alienHeight) < (shootBottom)) ||
-    (alienBottom > (shootBottom + shootHeight)) ||//CAMBIAR POR && !!!!
-    ((alienLeft + alienWidth) < shootLeft) ||
-    (alienLeft > (shootLeft + shootWidth))
-  ));
+  // console.log(alien);
+  // console.log("alienBottom " +alienBottom);
+  // console.log("alienLeft " +alienLeft);
+  // console.log("shootBottom " +shootBottom);
+  // console.log("shootLeft " +shootLeft);
+  // console.log(!(
+  //   ((alienBottom + alienHeight) < (shootBottom)) ||
+  //   (alienBottom > (shootBottom + shootHeight)) ||//CAMBIAR POR && !!!!
+  //   ((alienLeft + alienWidth) < shootLeft) ||
+  //   (alienLeft > (shootLeft + shootWidth))
+  // ));
   return !(
     ((alienBottom + alienHeight) < (shootBottom)) ||
-    (alienBottom > (shootBottom + shootHeight)) ||//CAMBIAR POR && !!!!
+    (alienBottom > (shootBottom + shootHeight)) &&//CAMBIAR POR && !!!!
     ((alienLeft + alienWidth) < shootLeft) ||
     (alienLeft > (shootLeft + shootWidth))
   );
 
+//COMPLETAR
+// SpaceInvaders.prototype.returnPoints() = function(alien){
+//   var type = alien.attr("id");
+//   switch (type) {
+//     case :
+//
+//       break;
+//     default:
+//
+//   }
+// }
     // return !(
     //     ((a.y + a.height) < (b.y)) ||
     //     (a.y > (b.y + b.height)) ||
@@ -183,7 +197,7 @@ INTERACCION CON HTML--DIBUJO
 SpaceInvaders.prototype.drawShip = function() {
   $('#ship').addClass('.ship');
 };
-SpaceInvaders.prototype.cleanShip = function() {
+SpaceInvaders.prototype.clearShip = function() {
   $('#ship').removeClass('.ship');
 };
 SpaceInvaders.prototype.createShooting = function(){
@@ -195,7 +209,7 @@ SpaceInvaders.prototype.createShooting = function(){
 SpaceInvaders.prototype.drawShooting = function(){
   $('#shooting').addClass('shooting');
 };
-SpaceInvaders.prototype.cleanShooting = function(){
+SpaceInvaders.prototype.clearShootingIfIsOut = function(){
   var shoots = document.getElementsByClassName("shooting");
    for(var r = 0; r < shoots.length; r++){
      if(parseInt(shoots[r].style.bottom) > 1000){
@@ -204,6 +218,11 @@ SpaceInvaders.prototype.cleanShooting = function(){
      }
    }
 };
+
+SpaceInvaders.prototype.clearShooting = function(shoot){
+    shoot.remove();
+};
+
 /*********************************************************************
 ESTADO DEL JUEGO
 *********************************************************************/

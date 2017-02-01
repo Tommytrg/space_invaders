@@ -94,42 +94,40 @@ p{text-align: }
 .row10{bottom: 130px;}
 
 
-#tipo1{
+.tipo1{
   background-image:url("../img/alien1.png");
 }
-#tipo2{
+.tipo2{
   background-image:url("../img/alien2.png");
 }
-#tipo3{
+.tipo3{
   background-image:url("../img/alien3.png");
 }
-#tipo4{
+.tipo4{
   background-image:url("../img/alien4.png");
 }
-#tipo5{
+.tipo5{
   background-image:url("../img/alien5.png");
 }
-#tipo6{
+.tipo6{
   background-image:url("../img/alien6.png");
 }
-#tipo7{
+.tipo7{
   background-image:url("../img/alien7.png");
 }
-#tipo8{
+.tipo8{
   background-image:url("../img/alien8.png");
 }
-#tipo9{
+.tipo9{
   background-image:url("../img/alien9.png");
 }
-#tipo10{
+.tipo10{
   background-image:url("../img/alien10.png");
 }
 
-#tipo11{
+.tipo11{
   background-image:url("../img/alien.jpg");
 }
-
-#shooting{}
 
 .shooting{
   background-color: red;
