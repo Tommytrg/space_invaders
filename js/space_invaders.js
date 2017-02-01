@@ -57,7 +57,7 @@ Alien.prototype.removeLifeAlien = function(){
 
 //Funcion que mueve al alien derecha
 Alien.prototype.moveRightAlien = function(){
-  this.position.row += 1;
+  this.position.row += 1;//? cambiar a el movimiento de la nave
 };
 //Funcion mover alien izquierda
 Alien.prototype.moveLeftAlien = function(){
@@ -109,7 +109,7 @@ Shooting.prototype.goBackwardShooting = function(){
   }));
 };
 
-/********************************************
+/************** ******************************
 ELEGIR UNA FUNCION DE LAS DOS ?
 ******************************************/
 //Funcion que devuelve true si shooting impacta con un alien

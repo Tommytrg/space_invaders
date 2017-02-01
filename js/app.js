@@ -8,45 +8,12 @@
    this.shipShoots = [];
    this.alienShoots = [];
    this.aliensArmy = [];
-   //this.board = new Board(x,y);
    this.score = new Score();
    console.log("Hola");
    this.start();
  }
 
-// SpaceInvaders.prototype.fillArmy = function(){
-//   this.aliensArmy=this.generateAlienArmy([]);
-// };
-//
-// SpaceInvaders.prototype.generateAlienArmy =function(army){
-//   for(var b = 0; b < 4 ; b++){
-//     army.push([]);
-//     for(c = 0; c < 10; c++){
-//       army[b].push(new Alien(1,100,0,0));
-//     }
-//   }
-//   //Se da clase de columna
-//   for(var d = 0; d < 4; d++){
-//     for(var e = 0; e<10; e++){
-//       army[d][e].addClass("col"+e);
-//     }
-//   }
-//   //Se da la clase fila
-//   for(var f = 0; f < 10; f++){
-//     for(var g = 0; g<4; g++){
-//       army[f][g].addClass("row"+g);
-//     }
-//   }
-//   return army;
-// };
-   /*for (var rowIndex = 0; rowIndex < options.rows; rowIndex++){
-     for (var columnIndex = 0; columnIndex < options.columns; columnIndex++){
-      grid.push('<div class="cuadrant" data-row="'+rowIndex+'" data-col="'+columnIndex+'" />');
-     }
-   }
-   space.html(grid.join(""));
- }
- /*******************************************
+/*******************************************
  CONFIGURACION DEL JUEGO
  *******************************************/
 //Funcion que asigna las teclas izq y dcha para el movimiento de la nave
@@ -75,7 +42,7 @@ SpaceInvaders.prototype.assignControlsToKeys = function(){
           }
         break;
       case 32:
-        this.shipShoots.push(this.ship.shootToAlien());
+        this.ship.shootToAlien();
         this.createShooting();
         break;
     }
@@ -84,7 +51,6 @@ SpaceInvaders.prototype.assignControlsToKeys = function(){
 
 //Funcion que actualiza el (turno del) juego
  SpaceInvaders.prototype.update = function(){
-
   this.moveShoots();
   this.checkShoots();
   this.drawShip();
@@ -92,25 +58,8 @@ SpaceInvaders.prototype.assignControlsToKeys = function(){
   this.cleanShooting();
   this.drawShooting();
   this.drawShip();
+
 };
-//
-// if(this.shipShoots.length!==0){
-//   var shoots = document.getElementsByClassName("shooting")[0];
-//   console.log(shoots);
-//   console.log(parseInt(shoots.));}
-//  };
-/*
-  $('poistion').on('keydown', function(e) {
-    switch (e.keyCode) {
-      case 37: // arrow left
-        this.ship.goLeft();
-        break;
-      case 39: // arrow right
-        this.ship.goRight();
-        break;
-      }
-  }.bind(this));
-};*/
 
 /*******************************************
 FUNCIONES DE DISPARO
@@ -135,15 +84,8 @@ SpaceInvaders.prototype.moveShipShoots = function(){
     $(".shooting").css("bottom","+="+mov+"");
 
     //$(".shooting").stop().animate({bottom: '+=700'});
-
-    for(var m = 0; m< this.shipShoots.length; m++){
-      this.shipShoots[m].goForwardShooting();
-    }
     // console.log("disparo en movimiento");
 };
-
-
-
 //Funcion que mueve los disparos
 SpaceInvaders.prototype.moveShoots = function(){
   if(this.alienShoots.length !== 0){
@@ -164,20 +106,57 @@ SpaceInvaders.prototype.checkShoots = function(){
 };
 
 SpaceInvaders.prototype.checkShipShoots = function(){
+
+  this.shipShoots = document.getElementsByClassName("shooting");
+  this.aliensArmy = document.getElementsByClassName("alien");
   if(this.shipShoots.length !== 0 && this.aliensArmy.length !==0){
     for(var k = 0; k < this.shipShoots.length; k++ ){
       for(var l = 0; l<this.aliensArmy.length;l++){
-          if(this.shipShoots[k].isAlienImpacted(this.aliensArmy[l])){
-            this.removeLifeAlien(this.aliensArmy[l]);
-            thihs.clearShooting(this.shipShoots[k]);
-            if(this.aliensArmy[l].life === 0){
-              this.clearAlien(aliensArmy[l]);
-              this.score.getPoints(aliensArmy[l]);
+          if( this.colision(this.shipShoots[k],this.aliensArmy[l])){
+            this.clearAlien(this.aliensArmy[l]);
+
             }
           }
       }
     }
-  }
+
+};
+
+// $(".alien").css("top")
+
+SpaceInvaders.prototype.colision = function(shoot, alien){
+  var alienBottom = parseInt(alien.style.bottom);
+  var alienLeft = parseInt(alien.style.left);
+  var alienHeight = 50; //parseInt(alien.style.height) ahorro de accesos al DOM
+  var alienWidth = 50; //parseInt(alien.style.width) ahorro de accesos al DOM
+  var shootBottom = parseInt(shoot.style.bottom);
+  var shootLeft = parseInt(shoot.style.left);
+  var shootHeight = 15; //parseInt(alien.style.height) ahorro de accesos al DOM
+  var shootWidth = 4; //parseInt(alien.style.width) ahorro de accesos al DOM
+  console.log(alien.style.getPropertyValue("bottom"));
+  console.log("alienBottom " +alienBottom);
+  console.log("alienLeft " +alienLeft);
+  console.log("shootBottom " +shootBottom);
+  console.log("shootLeft " +shootLeft);
+  console.log(!(
+    ((alienBottom + alienHeight) < (shootBottom)) ||
+    (alienBottom > (shootBottom + shootHeight)) ||//CAMBIAR POR && !!!!
+    ((alienLeft + alienWidth) < shootLeft) ||
+    (alienLeft > (shootLeft + shootWidth))
+  ));
+  return !(
+    ((alienBottom + alienHeight) < (shootBottom)) ||
+    (alienBottom > (shootBottom + shootHeight)) ||//CAMBIAR POR && !!!!
+    ((alienLeft + alienWidth) < shootLeft) ||
+    (alienLeft > (shootLeft + shootWidth))
+  );
+
+    // return !(
+    //     ((a.y + a.height) < (b.y)) ||
+    //     (a.y > (b.y + b.height)) ||
+    //     ((a.x + a.width) < b.x) ||
+    //     (a.x > (b.x + b.width))
+    //parseInt(shoots[r].style.bottom
 };
 
 SpaceInvaders.prototype.checkAlienShoots = function(){
@@ -195,17 +174,9 @@ SpaceInvaders.prototype.checkAlienShoots = function(){
 INTERACCION CON HTML
 *********************************************************************/
 //Funcion que borra un alien
-SpaceInvaders.prototype.cleanAlien = function() {
-  $('#alien').removeClass('alien');
+SpaceInvaders.prototype.clearAlien = function(alien) {
+  alien.remove();
 };
-//Funcion que borra un shooting
-
-//Funcion que comienza el juego
-// SpaceInvaders.prototype.start = function(){
-//   if (!this.intervalId){
-//     this.intervalId = setInterval(this.update.bind(this), 25);
-//   }
-// };
 /**********************
 INTERACCION CON HTML--DIBUJO
 ***********************/
@@ -216,7 +187,7 @@ SpaceInvaders.prototype.cleanShip = function() {
   $('#ship').removeClass('.ship');
 };
 SpaceInvaders.prototype.createShooting = function(){
-      this.shipShoots.push(new Shooting());
+  this.shipShoots = document.getElementsByClassName("shooting");
   $(".space").prepend(($("<div></div>").addClass('shooting').attr('id','shooting')).css("left",34+parseInt(($(".ship").css("left")))));
   // console.log("Creando disparo");
 };
@@ -233,26 +204,9 @@ SpaceInvaders.prototype.cleanShooting = function(){
      }
    }
 };
-
-
-//COMO DIBUJAR EL DISPARO ?
-//COMO DIBUJAR EL TABLERO
-//Problema que los  aliens no miden 1px y que la nave tampoco miden 50px*50px
-/*
--Funciones de dibujar
--Dibujar   disparo
--Dibujar ship
--Dibujar alien
--Generar alien
--Mover alien
--Borrar alien
-*/
-
 /*********************************************************************
 ESTADO DEL JUEGO
 *********************************************************************/
-
-//ACABAR f/
 //Funcion que para el juego indicando que se ha perdido
 SpaceInvaders.prototype.looseGame = function(){
   alert("GAME OVER");
@@ -277,3 +231,76 @@ SpaceInvaders.prototype.start = function(){
 };
 
 var game = new SpaceInvaders();
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/**************************COMENTARIOS*****************************************/
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+//implementar vidas con class
+
+
+//Funcion que borra un shooting
+
+//Funcion que comienza el juego
+// SpaceInvaders.prototype.start = function(){
+//   if (!this.intervalId){
+//     this.intervalId = setInterval(this.update.bind(this), 25);
+//   }
+// };
+
+//
+// if(this.shipShoots.length!==0){
+//   var shoots = document.getElementsByClassName("shooting")[0];
+//   console.log(shoots);
+//   console.log(parseInt(shoots.));}
+//  };
+/*
+  $('poistion').on('keydown', function(e) {
+    switch (e.keyCode) {
+      case 37: // arrow left
+        this.ship.goLeft();
+        break;
+      case 39: // arrow right
+        this.ship.goRight();
+        break;
+      }
+  }.bind(this));
+};*/
+
+// SpaceInvaders.prototype.fillArmy = function(){
+//   this.aliensArmy=this.generateAlienArmy([]);
+// };
+//
+// SpaceInvaders.prototype.generateAlienArmy =function(army){
+//   for(var b = 0; b < 4 ; b++){
+//     army.push([]);
+//     for(c = 0; c < 10; c++){
+//       army[b].push(new Alien(1,100,0,0));
+//     }
+//   }
+//   //Se da clase de columna
+//   for(var d = 0; d < 4; d++){
+//     for(var e = 0; e<10; e++){
+//       army[d][e].addClass("col"+e);
+//     }
+//   }
+//   //Se da la clase fila
+//   for(var f = 0; f < 10; f++){
+//     for(var g = 0; g<4; g++){
+//       army[f][g].addClass("row"+g);
+//     }
+//   }
+//   return army;
+// };
+  /*for (var rowIndex = 0; rowIndex < options.rows; rowIndex++){
+     for (var columnIndex = 0; columnIndex < options.columns; columnIndex++){
+      grid.push('<div class="cuadrant" data-row="'+rowIndex+'" data-col="'+columnIndex+'" />');
+     }
+   }
+   space.html(grid.join(""));
+ }
+*/

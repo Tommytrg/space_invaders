@@ -79,16 +79,19 @@ p{text-align: }
 .col10{left: 800px;}
 
 
-.row1{top:100px;}
-.row2{top: 180px;}
-.row3{top: 260px;}
-.row4{top: 340px;}
-.row5{top: 420px;}
-.row6{top: 500px;}
-.row7{top: 580px;}
-.row8{top: 660px;}
-.row9{top: 740px;}
-.row10{top: 820px;}
+.row1{bottom :650px;}
+.row2{bottom: 590px;}
+.row3{bottom: 530px;}
+.row4{bottom: 470px;}
+.row5{bottom: 410px;}
+.row6{bottom: 550px;}
+.row7{bottom: 490px;}
+.row8{bottom: 430px;}
+.row9{bottom: 370px;}
+.row10{bottom:310px;}
+.row10{bottom: 250px;}
+.row10{bottom: 190px;}
+.row10{bottom: 130px;}
 
 
 #tipo1{
