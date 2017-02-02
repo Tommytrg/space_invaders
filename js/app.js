@@ -8,16 +8,17 @@ MOVIMIENTO
 *******************************************************************************/
 //Funcion que mueve los alien hacia abajo
 SpaceInvaders.prototype.moveAliens = function(){
+  // var mov =0.25;
   this.aliensArmy = $(".alien");
-  if(this.aliensArmy.length !== 0){
-    // if(parseInt($(".alien").css("bottom")) > 350){
-    if(parseInt(this.aliensArmy[this.aliensArmy.length - 1].style.bottom) === 86){
-      // this.explosion(); implementar
-      this.looseGame();
-    }else{
-      $(".alien").css("bottom","-=" + this.alienSpeed + "");
-    }
+  // if(parseInt($(".alien").css("bottom")) > 350){
+if(this.aliensArmy.length !== 0){
+  if(parseInt(this.aliensArmy[this.aliensArmy.length - 1].style.bottom) === 86){
+    // this.explosion(); implementar
+    this.looseGame();
+  }else{
+    $(".alien").css("bottom","-=" + this.alienSpeed + "");
   }
+}
 };
 //Funcion que mueve los disparos
 SpaceInvaders.prototype.moveShoots = function(){
@@ -147,7 +148,6 @@ CREACION Y MANTENIMIENTO DEL JUEGO
    this.passd = false;
    this.start();
    this.gameInterval = setInterval(this.update.bind(this), 50);
-   this.started = 0;
  }
 //Funcion que inicia el juego
 SpaceInvaders.prototype.start = function(){
@@ -179,44 +179,53 @@ SpaceInvaders.prototype.update = function(){
 SpaceInvaders.prototype.levelUp = function(){
  var points = this.score.points;
   if(this.score.points > 45000){
-    points = this.score.points % 5000;
+    points = this.score.points % 45000;
   }
   switch (points) {
     case 5000:
       this.level++;
       this.startStage2();
+      this.update();
       break;
     case 10000:
       this.level++;
       this.startStage3();
+      this.update();
       break;
     case 15000:
       this.level++;
       this.startStage4();
+      this.update();
       break;
     case 20000:
       this.level++;
       this.startStage5();
+      this.update();
       break;
     case 25000:
       this.level++;
       this.startStage6();
+      this.update();
       break;
     case 30000:
       this.level++;
       this.startStage7();
+      this.update();
       break;
     case 35000:
       this.level++;
       this.startStage8();
+      this.update();
       break;
     case 40000:
       this.level++;
       this.startStage9();
+      this.update();
       break;
     case 45000:
       this.level++;
       this.startStage10();
+      this.update();
       break;
   }
 };
@@ -259,19 +268,19 @@ SpaceInvaders.prototype.startStage7 = function(){
   $("h2").empty().prepend("LEVEL "+this.level);
   $(".info").empty().prepend("Not bad...");
 };
-SpaceInvaders.prototype.startstage8 = function(){
+SpaceInvaders.prototype.startStage8 = function(){
   this.createAlienArmy(8);
   this.alienSpeed += 0.1;
   $("h2").empty().prepend("LEVEL "+this.level);
   $(".info").empty().prepend("Not bad...");
 };
-SpaceInvaders.prototype.startstage9 = function(){
+SpaceInvaders.prototype.startStage9 = function(){
   this.createAlienArmy(9);
   this.alienSpeed += 0.1;
   $("h2").empty().prepend("LEVEL "+this.level);
   $(".info").empty().prepend("Not bad...");
 };
-SpaceInvaders.prototype.startstage10 = function(){
+SpaceInvaders.prototype.startStage10 = function(){
   this.createAlienArmy(10);
   this.alienSpeed += 0.1;
   $("h2").empty().prepend("LEVEL "+this.level);
@@ -340,67 +349,45 @@ SpaceInvaders.prototype.assignControlsToKeys = function(){
         this.createShooting();
         break;
       case 71:
-        $(".alien").remove();
-        $(".end").remove();
         $(".pulse-g").remove();
-        this.started = 0;
+        $(".end").remove();
         this.newGame();
         break;
       case 103:
-        $(".alien").remove();
-        $(".end").remove();
         $(".pulse-g").remove();
+        $(".end").remove();
         this.newGame();
-        this.started = 0;
         break;
     }
   }.bind(this));
 };
 
 SpaceInvaders.prototype.newGame = function(){
-  // this.getBestPlayers();
-  $(".score").empty().append("0");
-  $("#alerts").remove();
-  $("#alerts").remove();
+  $(".alien").remove();
   this.createAlienArmy(1);
   this.score.points = 0;
+
 };
 //Funcion que suma puntos a score
-// SpaceInvaders.prototype.getBestPlayers = function(){
-//   var newName= prompt("Please enter your name","Awesome Name");
-//   console.log(newName);
-//   this.score.history.push(newName,this.score.points);
-//   console.log(this.score.history);
-//   this.score.sortScores();
-  // for(var v = 0; v < $(".best-players"); v++){
-  //   if($(".best-players").length > v){
-  //     $(".best-players").empty().append(
-  //       $("<div>" + this.score.history[v].name + " "+ this.score.history[v].number + "</div>")
-  //     ).addClass("best-players");
-  //   }
-  // }
-// };
-
 SpaceInvaders.prototype.returnPoints = function(alien){
   this.score.points += 100;
 };
 //Funcion que para el juego indicando que se ha perdido
 SpaceInvaders.prototype.looseGame = function(){
-    // this.stop();
-    $(".space").append(($("<p>YOU LOOSE</p>").addClass("end")));
-    $(".space").append(($("<p>Pulse G to start a new game</p>").addClass("pulse-g")));
-
-
+  $(".space").append(($("<p>YOU LOOSE<p>").addClass("end")));
+  $(".space").append(($("<p>Pulse G to start a new game</p>").addClass("pulse-g")));
+  $(".alien").remove();
+  this.alienSpeed = 0;
   // alert("GAME OVER");
 };
 //Funcion que para el juego
-SpaceInvaders.prototype.stop = function(){
-  console.log(this.intervalId);
-    console.log(window);
-    clearInterval(this.gameInterval);
-    this.gameInterval = null;
-    var self = this;
+// SpaceInvaders.prototype.stop = function(){
+//   console.log(this.intervalId);
+//     console.log(window);
+//     clearInterval(this.gameInterval);
+//     this.gameInterval = null;
+//     var self = this;
   // window.removeEventListener('keyup', this.gameControls.apply(self), false);
-};
+// };
 
 var game = new SpaceInvaders();
