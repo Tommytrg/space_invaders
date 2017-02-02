@@ -143,7 +143,7 @@ CREACION Y MANTENIMIENTO DEL JUEGO
    this.aliensArmy = [];
    this.score = new Score();
    this.level = 1;
-   this.alienSpeed = 3;
+   this.alienSpeed = 0;
    this.passd = false;
    this.start();
    this.gameInterval = setInterval(this.update.bind(this), 50);
@@ -341,56 +341,56 @@ SpaceInvaders.prototype.assignControlsToKeys = function(){
         break;
       case 71:
         $(".alien").remove();
+        $(".end").remove();
+        $(".pulse-g").remove();
         this.started = 0;
         this.newGame();
-
         break;
       case 103:
         $(".alien").remove();
+        $(".end").remove();
+        $(".pulse-g").remove();
         this.newGame();
-        this.started =0;
+        this.started = 0;
         break;
     }
   }.bind(this));
 };
 
 SpaceInvaders.prototype.newGame = function(){
-  this.getBestPlayers();
+  // this.getBestPlayers();
   $(".score").empty().append("0");
-  $(".end").remove();
-  $(".pulse-g").remove();
+  $("#alerts").remove();
+  $("#alerts").remove();
   this.createAlienArmy(1);
   this.score.points = 0;
 };
 //Funcion que suma puntos a score
-SpaceInvaders.prototype.getBestPlayers = function(){
-  var newName= prompt("Please enter your name","Awesome Name");
-  console.log(newName);
-  this.score.history.push(newName,this.score.points);
-  console.log(this.score.history);
-  this.score.sortScores();
-  for(var v = 0; v < $(".best-players"); v++){
-    if($(".best-players").length > v){
-      $(".best-players").empty().append(
-        $("<div>" + this.score.history[v].name + " "+ this.score.history.number[v] + "</div>")
-      ).addClass("best-players");
-    }
-  }
-
-
-};
+// SpaceInvaders.prototype.getBestPlayers = function(){
+//   var newName= prompt("Please enter your name","Awesome Name");
+//   console.log(newName);
+//   this.score.history.push(newName,this.score.points);
+//   console.log(this.score.history);
+//   this.score.sortScores();
+  // for(var v = 0; v < $(".best-players"); v++){
+  //   if($(".best-players").length > v){
+  //     $(".best-players").empty().append(
+  //       $("<div>" + this.score.history[v].name + " "+ this.score.history[v].number + "</div>")
+  //     ).addClass("best-players");
+  //   }
+  // }
+// };
 
 SpaceInvaders.prototype.returnPoints = function(alien){
   this.score.points += 100;
 };
 //Funcion que para el juego indicando que se ha perdido
 SpaceInvaders.prototype.looseGame = function(){
-  // this.stop();
-  if(this.started===0){
-    $("#alerts").append(($("<h3>YOU LOOSE</h3>").addClass("end")));
-    $("#alerts").append(($("<p>Pulse G to start a new game</p>").addClass("g-pulse")));
-    this.started++;
-  }
+    // this.stop();
+    $(".space").append(($("<p>YOU LOOSE</p>").addClass("end")));
+    $(".space").append(($("<p>Pulse G to start a new game</p>").addClass("pulse-g")));
+
+
   // alert("GAME OVER");
 };
 //Funcion que para el juego

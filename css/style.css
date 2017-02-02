@@ -8,7 +8,7 @@ body{
   background-size: cover;
   color: white;
 
-
+  position: relative;
    }
 
 h1{
@@ -168,13 +168,17 @@ h2{
   bottom: 85px;
 }
 .pulse-g{
-  font-size: 30px;
-
+  position: absolute;
+  font-size: 20px;
+  left: 320px;
+  bottom: 600px;
 }
 
 .end{
+  position: absolute;
   font-size: 50px;
   font-weight: bold;
+  left: 300px;
 }
 
 .best-players{
@@ -187,6 +191,7 @@ h2{
 }
 
 #alerts {
+  position: absolute;
   width: 800px;
   margin: 0 auto;
   text-align: center;
