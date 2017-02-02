@@ -130,8 +130,19 @@ SCORE
 //Constructor de Score
 function Score(){
   this.points = 0;
+  this.history = [];
 }
+Score.prototype.sortScores = function(){
+  this.history = this.history.sort(function(a,b){
+    return a.score-b.score;
+  });
+};
 //Funcion que añade puntos a score
 Score.prototype.getPoints = function(points){
   this.score += points;
 };
+
+function ScoresHistory(name,number){
+  this.name = name;
+  this.number =number;
+}
