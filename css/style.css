@@ -7,10 +7,8 @@ body{
   background-image: url("../img/SpaceWar5.jpg");
   background-size: cover;
   color: white;
-
   position: relative;
-   }
-
+}
 h1{
   color: white;
   text-align: center;
@@ -20,18 +18,12 @@ h2{
   text-align: center;
   font-size: 25px;
 }
-.container{
-  position:relative;
-  margin: auto;
-}
 .limit{
   position: absolute;
   border-color:rgb(73, 101, 128);
   bottom: 80px;
   width:870px;
-
 }
-
 .space{
   /*border: 2px dotted rgb(132, 255, 82);*/
   float: left;

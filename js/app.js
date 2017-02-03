@@ -12,7 +12,8 @@ SpaceInvaders.prototype.moveAliens = function(){
   this.aliensArmy = $(".alien");
   // if(parseInt($(".alien").css("bottom")) > 350){
 if(this.aliensArmy.length !== 0){
-  if(parseInt(this.aliensArmy[this.aliensArmy.length - 1].style.bottom) === 86){
+  console.log(parseInt(this.aliensArmy[this.aliensArmy.length - 1].style.bottom));
+  if(parseInt(this.aliensArmy[this.aliensArmy.length - 1].style.bottom) < 86){
     // this.explosion(); implementar
     this.looseGame();
   }else{
@@ -50,6 +51,7 @@ SpaceInvaders.prototype.checkShipShoots = function(){
       for(var l = 0; l < this.aliensArmy.length; l++){
         if( this.checkColision(this.shipShoots[k],this.aliensArmy[l])){
           this.returnPoints(this.aliensArmy[l]);
+          this.music(3);
           this.aliensArmy[l].remove();
           this.shipShoots[k].remove();
         }
@@ -91,7 +93,8 @@ SpaceInvaders.prototype.createShooting = function(){
 SpaceInvaders.prototype.createAlienArmy = function(n){
   for(var aa = 1; aa < 11; aa++){
     for(var ab = 1; ab< 6; ab++){
-    $(".space").prepend(($("<div></div>").addClass('alien').addClass("tipo" + n).addClass("col" + aa).addClass("row" + ab).addClass("ali")));
+      var alien = $("<div/>").addClass(`alien tipo${n} col${aa} row${ab}`);
+    $(".space").append(alien);
     }
   }
 };
@@ -178,6 +181,7 @@ SpaceInvaders.prototype.update = function(){
 };
 SpaceInvaders.prototype.levelUp = function(){
  var points = this.score.points;
+ this.music(2);
   if(this.score.points > 45000){
     points = this.score.points % 45000;
   }
@@ -234,7 +238,7 @@ SpaceInvaders.prototype.startStage2 = function(){
   this.createAlienArmy(2);
   this.alienSpeed += 0.1;
   $("h2").empty().prepend("LEVEL "+this.level);
-  $(".info").empty().prepend("Not bad...");
+  // $(".info").empty().prepend("Not bad...");
   // $(".ship").css("background-image","url(''../img/halconmilenario.png')");
   // $(".html").css("border-color","red");
 };
@@ -242,86 +246,52 @@ SpaceInvaders.prototype.startStage3 = function(){
   this.createAlienArmy(3);
   this.alienSpeed += 0.1;
   $("h2").empty().prepend("LEVEL "+this.level);
-  $(".info").empty().prepend("Not bad...");
+  // $(".info").empty().prepend("Not bad...");
 };
 SpaceInvaders.prototype.startStage4 = function(){
   this.createAlienArmy(4);
   this.alienSpeed += 0.1;
   $("h2").empty().prepend("LEVEL "+this.level);
-  $(".info").empty().prepend("Not bad...");
+  // $(".info").empty().prepend("Not bad...");
 };
 SpaceInvaders.prototype.startStage5 = function(){
   this.createAlienArmy(5);
   this.alienSpeed += 0.1;
   $("h2").empty().prepend("LEVEL "+this.level);
-  $(".info").empty().prepend("Not bad...");
+  // $(".info").empty().prepend("Not bad...");
 };
 SpaceInvaders.prototype.startStage6 = function(){
   this.createAlienArmy(6);
   this.alienSpeed += 0.1;
   $("h2").empty().prepend("LEVEL "+this.level);
-  $(".info").empty().prepend("Not bad...");
+  // $(".info").empty().prepend("Not bad...");
 };
 SpaceInvaders.prototype.startStage7 = function(){
   this.createAlienArmy(7);
   this.alienSpeed += 0.1;
   $("h2").empty().prepend("LEVEL "+this.level);
-  $(".info").empty().prepend("Not bad...");
+  // $(".info").empty().prepend("Not bad...");
 };
 SpaceInvaders.prototype.startStage8 = function(){
   this.createAlienArmy(8);
   this.alienSpeed += 0.1;
   $("h2").empty().prepend("LEVEL "+this.level);
-  $(".info").empty().prepend("Not bad...");
+  // $(".info").empty().prepend("Not bad...");
 };
 SpaceInvaders.prototype.startStage9 = function(){
   this.createAlienArmy(9);
   this.alienSpeed += 0.1;
   $("h2").empty().prepend("LEVEL "+this.level);
-  $(".info").empty().prepend("Not bad...");
+  // $(".info").empty().prepend("Not bad...");
 };
 SpaceInvaders.prototype.startStage10 = function(){
   this.createAlienArmy(10);
   this.alienSpeed += 0.1;
   $("h2").empty().prepend("LEVEL "+this.level);
-  $(".info").empty().prepend("Not bad...");
+  // $(".info").empty().prepend("Not bad...");
 };
-
-// SpaceInvaders.prototype.gameControls = function(e){
-//   var space = $(".space");
-//   var ship = $(".ship");
-//   var left = parseInt(ship.css("left"));
-//   var spaceWidth = parseInt(space.css("width")) - parseInt(ship.css("width"));
-//   var mov = 20;
-//   switch(e.keyCode){
-//      case 37:
-//      this.ship.shipMove("left");
-//      if (left - mov > 0){
-//        $(".ship").css("left","-="+mov+"");
-//        //$(".ship").stop().animate({left: '-=60'});
-//      }
-//        break;
-//     case 39:
-//       this.ship.shipMove("right");
-//         if (left + mov + parseInt(ship.css("width")) < spaceWidth + 50){
-//           $(".ship").css("left","+=" + mov + "");
-//           //$(".ship").stop().animate({left: '+=60'});
-//           console.log(mov);
-//         }
-//       break;
-//     case 32:
-//       this.ship.shootToAlien();
-//       this.createShooting();
-//       break;
-//   }
-// };
-// SpaceInvaders.prototype.assignControlsToKeys = function(){
-//   var self = this;
-//   window.addEventListener('keyup',this.gameControls.bind(self));
-// };
 //Funcion que asigna las teclas izq y dcha para el movimiento de la nave y espacio para disparo
 SpaceInvaders.prototype.assignControlsToKeys = function(){
-    // console.log("adding event listener");
   window.addEventListener('keyup',function(e){
     var space = $(".space");
     var ship = $(".ship");
@@ -345,28 +315,49 @@ SpaceInvaders.prototype.assignControlsToKeys = function(){
           }
         break;
       case 32:
+        this.music(1);
         this.ship.shootToAlien();
         this.createShooting();
         break;
       case 71:
         $(".pulse-g").remove();
         $(".end").remove();
+        this.music(3);
         this.newGame();
         break;
       case 103:
         $(".pulse-g").remove();
         $(".end").remove();
+        this.music(3);
         this.newGame();
         break;
     }
   }.bind(this));
 };
-
+SpaceInvaders.prototype.music = function(num){
+  var audio;
+  switch (num) {
+    case 1:
+      //Disparo
+      audio = new Audio("./sound/Laser_Shoot8.wav");
+      audio.play();
+      break;
+    case 2:
+    //lvlup
+      audio = new Audio("./sound/Powerup.wav");
+      audio.play();
+      break;
+    case 3:
+      //hit
+      audio = new Audio("./sound/Hit_Hurt.wav");
+      audio.play();
+      break;
+  }
+};
 SpaceInvaders.prototype.newGame = function(){
   $(".alien").remove();
   this.createAlienArmy(1);
   this.score.points = 0;
-
 };
 //Funcion que suma puntos a score
 SpaceInvaders.prototype.returnPoints = function(alien){
@@ -380,14 +371,5 @@ SpaceInvaders.prototype.looseGame = function(){
   this.alienSpeed = 0;
   // alert("GAME OVER");
 };
-//Funcion que para el juego
-// SpaceInvaders.prototype.stop = function(){
-//   console.log(this.intervalId);
-//     console.log(window);
-//     clearInterval(this.gameInterval);
-//     this.gameInterval = null;
-//     var self = this;
-  // window.removeEventListener('keyup', this.gameControls.apply(self), false);
-// };
 
 var game = new SpaceInvaders();
