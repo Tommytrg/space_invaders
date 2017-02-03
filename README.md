@@ -10,9 +10,9 @@ Instruccions
 -------------
 
 - Move right: right arrow
--Move left: left arrow
--Shoot: space bar
--Start a new game: G
+- Move left: left arrow
+- Shoot: space bar
+- Start a new game: G
 
 
 Play
