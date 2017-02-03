@@ -159,7 +159,6 @@ SpaceInvaders.prototype.start = function(){
 };
 //Funcion que actualiza el juego
 SpaceInvaders.prototype.update = function(){
-
   this.moveShoots();
   this.checkShoots();
   if(this.aliensArmy.length === 0){
@@ -172,12 +171,8 @@ SpaceInvaders.prototype.update = function(){
   this.drawShooting();
   this.drawShip();
   this.clearAliens();
-
   this.moveAliens();
   this.drawAliens();
-
-
-
 };
 SpaceInvaders.prototype.levelUp = function(){
  var points = this.score.points;
