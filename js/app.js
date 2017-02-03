@@ -147,7 +147,7 @@ CREACION Y MANTENIMIENTO DEL JUEGO
    this.aliensArmy = [];
    this.score = new Score();
    this.level = 1;
-   this.alienSpeed = 0;
+   this.alienSpeed = 0.1;
    this.passd = false;
    this.start();
    this.gameInterval = setInterval(this.update.bind(this), 50);
@@ -363,7 +363,7 @@ SpaceInvaders.prototype.looseGame = function(){
   $(".space").append(($("<p>YOU LOOSE<p>").addClass("end")));
   $(".space").append(($("<p>Pulse G to start a new game</p>").addClass("pulse-g")));
   $(".alien").remove();
-  this.alienSpeed = 0;
+  this.alienSpeed = 0.1;
   // alert("GAME OVER");
 };
 
