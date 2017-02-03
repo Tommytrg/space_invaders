@@ -233,7 +233,6 @@ SpaceInvaders.prototype.startStage2 = function(){
   this.createAlienArmy(2);
   this.alienSpeed += 0.1;
   $("h2").empty().prepend("LEVEL "+this.level);
-  // $(".info").empty().prepend("Not bad...");
   // $(".ship").css("background-image","url(''../img/halconmilenario.png')");
   // $(".html").css("border-color","red");
 };
