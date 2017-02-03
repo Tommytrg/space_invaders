@@ -364,7 +364,7 @@ SpaceInvaders.prototype.looseGame = function(){
   $(".space").append(($("<p>Pulse G to start a new game</p>").addClass("pulse-g")));
   $(".alien").remove();
   this.alienSpeed = 0.1;
-  // alert("GAME OVER");
+  // alert("GAME OVER");;
 };
 
 var game = new SpaceInvaders();
