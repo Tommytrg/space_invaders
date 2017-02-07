@@ -352,6 +352,7 @@ SpaceInvaders.prototype.newGame = function(){
   $(".alien").remove();
   this.createAlienArmy(1);
   this.score.points = 0;
+  this.level = 1;
 };
 //Funcion que suma puntos a score
 SpaceInvaders.prototype.returnPoints = function(alien){
