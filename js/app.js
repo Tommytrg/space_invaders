@@ -226,6 +226,11 @@ SpaceInvaders.prototype.levelUp = function(){
       this.startStage10();
       this.update();
       break;
+    case 0:
+      this.level++;
+      this.startStage2();
+      this.update();
+      break;
   }
 };
 /*PERSONALIZAR MENSAJES*/
