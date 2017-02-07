@@ -321,13 +321,13 @@ SpaceInvaders.prototype.assignControlsToKeys = function(){
       case 71:
         $(".pulse-g").remove();
         $(".end").remove();
-        this.music(3);
+        // this.music(3);
         this.newGame();
         break;
       case 103:
         $(".pulse-g").remove();
         $(".end").remove();
-        this.music(3);
+        // this.music(3);
         this.newGame();
         break;
     }
