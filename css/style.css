@@ -22,7 +22,7 @@ h2{
   position: absolute;
   border-color:rgb(73, 101, 128);
   bottom: 80px;
-  width:800px;
+  width:850px;
 }
 .space{
   /*border: 2px dotted rgb(132, 255, 82);*/
@@ -45,7 +45,7 @@ h2{
   /*height: 24vh;*/
   position: relative;
   text-align: center;
-  width: 400px;
+  width: 350px;
   /*width: 24vw;*/
 }
 .score{
@@ -64,7 +64,7 @@ h2{
   height: 200px;
   position: relative;
   text-align: center;
-  width: 400px;
+  width: 350px;
   /*width: 24vw;*/
 }
 
