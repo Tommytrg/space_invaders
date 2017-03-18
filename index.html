@@ -1,97 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="./css/reset.css">
-  <link rel="stylesheet" href="./css/style.css">
-
-  <title>Space invaders</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/app.js"></script>
+    <script type="text/javascript" src="./js/space_invaders.js"></script>
+    <title>Space invaders</title>
 </head>
+
 <body>
-  <h1>SPACE WAR</h1>
-  <div class="scoreBoard">
-    <h2>SCORE</h2>
-    <p class="score"></p>
-    <p class="px">points</p>
-
-    <!-- <p>BEST PLAYERS<p>
-    <p class="best-players"></p> -->
-
+    <h1>SPACE INVADERS</h1>
+    <div class="score">
+        <h2>SCORE:</h2>
+        <p>100 PX</p>
     </div>
-  </div>
-  <div class="space">
-
-    <div id="tipo1" class="alien ali col1 row1 tipo1"></div>
-    <div id="tipo1" class="alien ali col2 row1 tipo1"></div>
-    <div id="tipo1" class="alien ali col3 row1 tipo1"></div>
-    <div id="tipo1" class="alien ali col4 row1 tipo1"></div>
-    <div id="tipo1" class="alien ali col5 row1 tipo1"></div>
-    <div id="tipo1" class="alien ali col6 row1 tipo1"></div>
-    <div id="tipo1" class="alien ali col7 row1 tipo1"></div>
-    <div id="tipo1" class="alien ali col8 row1 tipo1"></div>
-    <div id="tipo1" class="alien ali col9 row1 tipo1"></div>
-    <div id="tipo1" class="alien ali col10 row1 tipo1"></div>
-
-    <div class="alien ali col1 row2 tipo1"></div>
-    <div class="alien ali col2 row2 tipo1"></div>
-    <div class="alien ali col3 row2 tipo1"></div>
-    <div class="alien ali col4 row2 tipo1"></div>
-    <div class="alien ali col5 row2 tipo1"></div>
-    <div class="alien ali col6 row2 tipo1"></div>
-    <div class="alien ali col7 row2 tipo1"></div>
-    <div class="alien ali col8 row2 tipo1"></div>
-    <div class="alien ali col9 row2 tipo1"></div>
-    <div class="alien ali col10 row2 tipo1"></div>
-
-    <div class="alien ali col1 row3 tipo1"></div>
-    <div class="alien ali col2 row3 tipo1"></div>
-    <div class="alien ali col3 row3 tipo1"></div>
-    <div class="alien ali col4 row3 tipo1"></div>
-    <div class="alien ali col5 row3 tipo1"></div>
-    <div class="alien ali col6 row3 tipo1"></div>
-    <div class="alien ali col7 row3 tipo1"></div>
-    <div class="alien ali col8 row3 tipo1"></div>
-    <div class="alien ali col9 row3 tipo1"></div>
-    <div class="alien ali col10 row3 tipo1"></div>
-
-    <div class="alien ali col1 row4 tipo1"></div>
-    <div class="alien ali col2 row4 tipo1"></div>
-    <div class="alien ali col3 row4 tipo1"></div>
-    <div class="alien ali col4 row4 tipo1"></div>
-    <div class="alien ali col5 row4 tipo1"></div>
-    <div class="alien ali col6 row4 tipo1"></div>
-    <div class="alien ali col7 row4 tipo1"></div>
-    <div class="alien ali col8 row4 tipo1"></div>
-    <div class="alien ali col9 row4 tipo1"></div>
-    <div class="alien ali col10 row4 tipo1"></div>
-
-    <div class="alien ali col1 row5 tipo1"></div>
-    <div class="alien ali col2 row5 tipo1"></div>
-    <div class="alien ali col3 row5 tipo1"></div>
-    <div class="alien ali col4 row5 tipo1"></div>
-    <div class="alien ali col5 row5 tipo1"></div>
-    <div class="alien ali col6 row5 tipo1"></div>
-    <div class="alien ali col7 row5 tipo1"></div>
-    <div class="alien ali col8 row5 tipo1"></div>
-    <div class="alien ali col9 row5 tipo1"></div>
-    <div class="alien ali col10 row5 tipo1"></div>
-    <hr class="limit">
-    <!-- <div class="shooting"></div> -->
-    <div class="ship"></div>
-  </div>
-  <div class="history">
-    <h2>LEVEL 1</h2>
-    <!-- <p class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, debitis. Exercitationem natus eum quia itaque recusandae cumque commodi laboriosam obcaecati, iure quo sunt dolorum mollitia magnam ipsa provident ex totam.</p> -->
-    <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi voluptatum aut pariatur ipsam velit, nobis! Molestias animi porro aut quo iste iusto consequatur laboriosam, nihil, quia laudantium recusandae expedita voluptatibus.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam consequuntur optio enim officia, minus amet ut exercitationem similique sunt illum, molestiae unde ratione facere laborum. Doloremque perspiciatis deserunt suscipit, sint.</p> -->
-
-
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script type="text/javascript" src="./js/space_invaders.js"></script>
-  <script type="text/javascript" src="./js/app.js"></script>
+    <div class="space">
+        <div class="alien"></div>
+        <div class="alien"></div>
+        <div class="alien"></div>
+        <div class="alien"></div>
+        <div class="alien"></div>
+        <div class="alien"></div>
+        <div class="alien"></div>
+        <div class="alien"></div>
+        <div class="alien"></div>
+        <div class="alien"></div>
+        <div class="alien"></div>
+        <div class="alien"></div>
+        <div class="alien"></div>
+        
+        <div class="ship"></div>
+    </div>
+    <div class="history">
+        <p>Welcome to the space !</p>
+    </div>
 </body>
+
 </html>
